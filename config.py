@@ -68,7 +68,18 @@ config.load_autoconfig(False)
 ## key. Note that when a key is bound (via `bindings.default` or
 ## `bindings.commands`), the mapping is ignored.
 ## Type: Dict
-# c.bindings.key_mappings = {'<Ctrl-[>': '<Escape>', '<Ctrl-6>': '<Ctrl-^>', '<Ctrl-M>': '<Return>', '<Ctrl-J>': '<Return>', '<Ctrl-I>': '<Tab>', '<Shift-Return>': '<Return>', '<Enter>': '<Return>', '<Shift-Enter>': '<Return>', '<Ctrl-Enter>': '<Ctrl-Return>'}
+c.bindings.key_mappings = {
+    "<Ctrl-C>": "<Escape>",
+    "<Ctrl-[>": "<Escape>",
+    "<Ctrl-6>": "<Ctrl-^>",
+    "<Ctrl-M>": "<Return>",
+    "<Ctrl-J>": "<Return>",
+    "<Ctrl-I>": "<Tab>",
+    "<Shift-Return>": "<Return>",
+    "<Enter>": "<Return>",
+    "<Shift-Enter>": "<Return>",
+    "<Ctrl-Enter>": "<Ctrl-Return>",
+}
 
 ## When to show a changelog after qutebrowser was upgraded.
 ## Type: String
@@ -2431,7 +2442,7 @@ config.bind("gw", "spawn mpv {url}")
 # config.bind('<Ctrl-?>', 'rl-delete-char', mode='command')
 # config.bind('<Ctrl-A>', 'rl-beginning-of-line', mode='command')
 # config.bind('<Ctrl-B>', 'rl-backward-char', mode='command')
-# config.bind('<Ctrl-C>', 'completion-item-yank', mode='command')
+config.unbind("<Ctrl-C>", mode="command")
 # config.bind('<Ctrl-D>', 'completion-item-del', mode='command')
 # config.bind('<Ctrl-E>', 'rl-end-of-line', mode='command')
 # config.bind('<Ctrl-F>', 'rl-forward-char', mode='command')
@@ -2440,7 +2451,7 @@ config.bind("gw", "spawn mpv {url}")
 # config.bind('<Ctrl-N>', 'command-history-next', mode='command')
 # config.bind('<Ctrl-P>', 'command-history-prev', mode='command')
 # config.bind('<Ctrl-Return>', 'command-accept --rapid', mode='command')
-# config.bind('<Ctrl-Shift-C>', 'completion-item-yank --sel', mode='command')
+config.unbind("<Ctrl-Shift-C>", mode="command")
 # config.bind('<Ctrl-Shift-Tab>', 'completion-item-focus prev-category', mode='command')
 # config.bind('<Ctrl-Shift-W>', 'rl-filename-rubout', mode='command')
 # config.bind('<Ctrl-Tab>', 'completion-item-focus next-category', mode='command')
@@ -2456,6 +2467,8 @@ config.bind("gw", "spawn mpv {url}")
 # config.bind('<Shift-Tab>', 'completion-item-focus prev', mode='command')
 # config.bind('<Tab>', 'completion-item-focus next', mode='command')
 # config.bind('<Up>', 'completion-item-focus --history prev', mode='command')
+config.bind("<Ctrl-L>", "completion-item-yank", mode="command")
+config.bind("<Ctrl-Shift-L>", "completion-item-yank --sel", mode="command")
 
 ## Bindings for hint mode
 # config.bind('<Ctrl-B>', 'hint all tab-bg', mode='hint')
