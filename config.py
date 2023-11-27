@@ -532,7 +532,7 @@ c.bindings.key_mappings = {
 ## - "With increased text contrast": Set
 ## `colors.webpage.darkmode.increase_text_contrast` (QtWebEngine 6.3+)
 ## Type: Bool
-# c.colors.webpage.darkmode.enabled = False
+c.colors.webpage.darkmode.enabled = True
 
 ## Render all colors as grayscale. This only has an effect when
 ## `colors.webpage.darkmode.algorithm` is set to `lightness-hsl` or
