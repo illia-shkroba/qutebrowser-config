@@ -2388,6 +2388,10 @@ c.url.searchengines = {
 # config.bind('{{', 'navigate prev -t')
 # config.bind('}}', 'navigate next -t')
 
+### Bindings for mpv
+config.bind(";w", "hint links spawn --detach mpv {hint-url}")
+config.bind("gw", "spawn mpv {url}")
+
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
 # config.bind('0', 'move-to-start-of-line', mode='caret')
