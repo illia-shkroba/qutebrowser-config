@@ -2406,6 +2406,7 @@ c.url.searchengines = {
 # config.bind('yy', 'yank')
 # config.bind('{{', 'navigate prev -t')
 # config.bind('}}', 'navigate next -t')
+config.bind("<Ctrl-Shift-C>", "yank selection")
 
 ### Bindings for mpv
 config.bind(",W", "hint --rapid links spawn --detach umpv {hint-url}")
