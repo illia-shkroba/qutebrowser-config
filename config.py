@@ -2409,9 +2409,13 @@ c.url.searchengines = {
 config.bind("<Ctrl-Shift-C>", "yank selection")
 
 ### Bindings for mpv
-config.bind(",W", "hint --rapid links spawn --detach umpv {hint-url}")
 config.bind(",gw", "spawn umpv {url}")
+
+config.bind(",W", "hint --rapid links spawn --detach umpv {hint-url}")
 config.bind(",w", "hint links spawn --detach umpv {hint-url}")
+
+config.bind(",qW", "hint --rapid links spawn --detach mpv --volume=0 {hint-url}")
+config.bind(",qw", "hint links spawn --detach mpv --volume=0 {hint-url}")
 
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
