@@ -2420,6 +2420,21 @@ config.bind(",w", "hint links spawn --detach umpv {hint-url}")
 config.bind(",qW", "hint --rapid links spawn --detach mpv --volume=0 {hint-url}")
 config.bind(",qw", "hint links spawn --detach mpv --volume=0 {hint-url}")
 
+### Bindings for music downloading
+music_downloads_dir = Path.home() / "downloads" / "music"
+music_downloads_dir.mkdir(parents=True, exist_ok=True)
+
+config.bind(
+    ",M",
+    "hint --rapid links spawn --verbose "
+    + f'yt-dlp -P "{music_downloads_dir}" -f bestaudio {{hint-url}}',
+)
+config.bind(
+    ",m",
+    "hint links spawn --verbose --output-messages "
+    + f'yt-dlp -P "{music_downloads_dir}" -f bestaudio {{hint-url}}',
+)
+
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
 # config.bind('0', 'move-to-start-of-line', mode='caret')
