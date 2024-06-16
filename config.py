@@ -2435,6 +2435,21 @@ config.bind(
     + f'yt-dlp -P "{music_downloads_dir}" -f bestaudio {{hint-url}}',
 )
 
+### Bindings for video downloading
+video_downloads_dir = Path.home() / "downloads" / "video"
+video_downloads_dir.mkdir(parents=True, exist_ok=True)
+
+config.bind(
+    ",V",
+    "hint --rapid links spawn --verbose "
+    + f'yt-dlp -P "{video_downloads_dir}" {{hint-url}}',
+)
+config.bind(
+    ",v",
+    "hint links spawn --verbose --output-messages "
+    + f'yt-dlp -P "{video_downloads_dir}" {{hint-url}}',
+)
+
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
 # config.bind('0', 'move-to-start-of-line', mode='caret')
