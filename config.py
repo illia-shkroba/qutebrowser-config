@@ -2412,13 +2412,13 @@ c.url.searchengines = {
 config.bind("<Ctrl-Shift-C>", "yank selection")
 
 ### Bindings for mpv
-config.bind(",gw", "spawn umpv {url}")
+config.bind(",W", "hint --rapid links spawn --verbose --detach umpv {hint-url}")
+config.bind(",w", "hint links spawn --verbose --detach umpv {hint-url}")
 
-config.bind(",W", "hint --rapid links spawn --detach umpv {hint-url}")
-config.bind(",w", "hint links spawn --detach umpv {hint-url}")
-
-config.bind(",qW", "hint --rapid links spawn --detach mpv --volume=0 {hint-url}")
-config.bind(",qw", "hint links spawn --detach mpv --volume=0 {hint-url}")
+config.bind(
+    ",qW", "hint --rapid links spawn --verbose --detach mpv --volume=0 {hint-url}"
+)
+config.bind(",qw", "hint links spawn --verbose --detach mpv --volume=0 {hint-url}")
 
 ### Bindings for music downloading
 music_downloads_dir = Path.home() / "downloads" / "music"
