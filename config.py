@@ -2458,6 +2458,20 @@ config.bind("<Ctrl-P>", "spawn --userscript qute-pass", mode="insert")
 config.bind(",L", "set colors.webpage.darkmode.enabled true")
 config.bind(",l", "set colors.webpage.darkmode.enabled false")
 
+### Bindings for qr
+config.bind(",qr", "spawn --userscript qr")
+
+### Bindings for qmenu
+config.bind(",O", "spawn --userscript qmenu open -t")
+config.bind(",b", "spawn --userscript qmenu open -b")
+config.bind(",o", "spawn --userscript qmenu open")
+
+config.bind(",hO", "spawn --userscript qmenu open -t")
+config.bind(",hb", "spawn --userscript qmenu open -b")
+config.bind(",ho", "spawn --userscript qmenu open")
+config.bind(",hp", "spawn --userscript qmenu open -p")
+config.bind(",hw", "spawn --userscript qmenu open -w")
+
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
 # config.bind('0', 'move-to-start-of-line', mode='caret')
