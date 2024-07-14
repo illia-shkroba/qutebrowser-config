@@ -2454,6 +2454,10 @@ config.bind(
 config.bind(",p", "spawn --userscript qute-pass")
 config.bind("<Ctrl-P>", "spawn --userscript qute-pass", mode="insert")
 
+### Bindings for colors
+config.bind(",L", "set colors.webpage.darkmode.enabled true")
+config.bind(",l", "set colors.webpage.darkmode.enabled false")
+
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
 # config.bind('0', 'move-to-start-of-line', mode='caret')
