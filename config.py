@@ -2450,6 +2450,10 @@ config.bind(
     + f'yt-dlp -P "{video_downloads_dir}" {{hint-url}}',
 )
 
+### Bindings for pass
+config.bind(",p", "spawn --userscript qute-pass")
+config.bind("<Ctrl-P>", "spawn --userscript qute-pass", mode="insert")
+
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
 # config.bind('0', 'move-to-start-of-line', mode='caret')
