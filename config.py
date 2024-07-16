@@ -2451,8 +2451,10 @@ config.bind(
 )
 
 ### Bindings for pass
-config.bind(",p", "spawn --userscript qute-pass")
-config.bind("<Ctrl-P>", "spawn --userscript qute-pass", mode="insert")
+config.bind(",p", "spawn --userscript qute-pass --dmenu-invocation='dmenu'")
+config.bind(
+    "<Ctrl-P>", "spawn --userscript qute-pass --dmenu-invocation='dmenu'", mode="insert"
+)
 
 ### Bindings for colors
 config.bind(",L", "set colors.webpage.darkmode.enabled true")
