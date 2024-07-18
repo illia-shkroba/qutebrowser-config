@@ -8,18 +8,18 @@ readonly confdir=${XDG_CONFIG_HOME:-$HOME/.config}
 readonly optsfile=$confdir/dmenu/bemenucolors
 
 create_menu() {
-  # Check quickmarks
+  # History
+  printf -- '%s\n' "$(sqlite3 -separator ' ' "$QUTE_DATA_DIR/history.sqlite" 'select title, url from CompletionHistory order by last_atime desc')"
+
+  # Quickmarks
   while read -r url; do
     printf -- '%s\n' "$url"
   done < "$QUTE_CONFIG_DIR"/quickmarks
 
-  # Next bookmarks
+  # Bookmarks
   while read -r url _; do
     printf -- '%s\n' "$url"
   done < "$QUTE_CONFIG_DIR"/bookmarks/urls
-
-  # Finally history
-  printf -- '%s\n' "$(sqlite3 -separator ' ' "$QUTE_DATA_DIR/history.sqlite" 'select title, url from CompletionHistory')"
 }
 
 get_selection() {
