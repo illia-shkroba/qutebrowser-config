@@ -37,7 +37,7 @@ get_selection() {
 [[ -s $optsfile ]] && source "$optsfile"
 
 url=$(get_selection)
-url=${url/*http/http}
+url=$(sed 's-.*\(https\|http\|file\)://-\1://-' <<<$url)
 
 # If no selection is made, exit (escape pressed, e.g.)
 [[ -z $url ]] && exit 0
