@@ -2183,9 +2183,10 @@ c.url.default_page = "https://www.google.com"
 ## Type: Dict
 c.url.searchengines = {
     "DEFAULT": "https://www.google.com/search?q={}",
-    "archwiki": "https://wiki.archlinux.org/?search={}",
-    "duckduckgo": "https://duckduckgo.com/?q={}",
-    "youtube": "https://www.youtube.com/results?search_query={}",
+    "aw": "https://wiki.archlinux.org/?search={}",
+    "ddg": "https://duckduckgo.com/?q={}",
+    "w": "https://en.wikipedia.org/wiki/{}",
+    "yt": "https://www.youtube.com/results?search_query={}",
 }
 
 ## Page(s) to open at the start.
