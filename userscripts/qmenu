@@ -4,10 +4,56 @@
 #:bind o spawn --userscript qmenu open
 #:bind O spawn --userscript qmenu open -t
 
-readonly confdir=${XDG_CONFIG_HOME:-$HOME/.config}
-readonly optsfile=$confdir/dmenu/bemenucolors
+readonly CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 
-create_menu() {
+main() {
+  if [ "$#" -eq 0 ]; then
+    help
+    exit
+  fi
+
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      '-h' | '--help')
+        help
+        exit
+        ;;
+      '--')
+        shift
+        break
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+
+  url=$(history | menu)
+  url=$(sed 's-.*\(https\|http\|file\)://-\1://-' <<< "$url")
+
+  # If no selection is made, exit (escape pressed, e.g.)
+  [[ -z $url ]] && exit 0
+
+  echo -n "$@ $url" >> "$QUTE_FIFO"
+}
+
+help() {
+  cat >&2 << 'EOF'
+Usage: qmenu [OPTIONS]
+
+Options:
+  -h, --help    Show this message and exit.
+EOF
+}
+
+menu() {
+  [[ -s "$CONFIG_HOME"/dmenu/font ]] && read -r font < "$CONFIG_HOME"/dmenu/font
+  [[ -n $font ]] && opts+=(-fn "$font")
+  opts+=(-p qutebrowser)
+  dmenu -l 10 "${opts[@]}"
+}
+
+history() {
   # History
   printf -- '%s\n' "$(sqlite3 -separator ' ' "$QUTE_DATA_DIR/history.sqlite" 'select title, url from CompletionHistory order by last_atime desc')"
 
@@ -22,24 +68,4 @@ create_menu() {
   done < "$QUTE_CONFIG_DIR"/bookmarks/urls
 }
 
-get_selection() {
-  opts+=(-p qutebrowser)
-  create_menu | dmenu -l 10 "${opts[@]}"
-}
-
-# Main
-# https://github.com/halfwit/dotfiles/blob/master/.config/dmenu/font
-[[ -s $confdir/dmenu/font ]] && read -r font < "$confdir"/dmenu/font
-
-[[ -n $font ]] && opts+=(-fn "$font")
-
-# shellcheck source=/dev/null
-[[ -s $optsfile ]] && source "$optsfile"
-
-url=$(get_selection)
-url=$(sed 's-.*\(https\|http\|file\)://-\1://-' <<<$url)
-
-# If no selection is made, exit (escape pressed, e.g.)
-[[ -z $url ]] && exit 0
-
-echo -n "$@ $url" >> "$QUTE_FIFO"
+main "$@"
