@@ -12,8 +12,14 @@ main() {
     exit
   fi
 
+  strategy=all
+
   while [ "$#" -gt 0 ]; do
     case "$1" in
+      '-d' | '--domain')
+        strategy=domain
+        shift
+        ;;
       '-h' | '--help')
         help
         exit
@@ -28,7 +34,7 @@ main() {
     esac
   done
 
-  url=$(history | menu)
+  url=$(history | select_ "$strategy" | menu)
   url=$(sed 's-.*\(https\|http\|file\)://-\1://-' <<< "$url")
 
   # If no selection is made, exit (escape pressed, e.g.)
@@ -42,15 +48,9 @@ help() {
 Usage: qmenu [OPTIONS]
 
 Options:
+  -d, --domain  Select domains from history.
   -h, --help    Show this message and exit.
 EOF
-}
-
-menu() {
-  [[ -s "$CONFIG_HOME"/dmenu/font ]] && read -r font < "$CONFIG_HOME"/dmenu/font
-  [[ -n $font ]] && opts+=(-fn "$font")
-  opts+=(-p qutebrowser)
-  dmenu -l 10 "${opts[@]}"
 }
 
 history() {
@@ -66,6 +66,26 @@ history() {
   while read -r url _; do
     printf -- '%s\n' "$url"
   done < "$QUTE_CONFIG_DIR"/bookmarks/urls
+}
+
+select_() {
+  case "$1" in
+    'domain')
+      sed 's-.*\(https\|http\|file\)://\([^/]*\).*-\1://\2-' \
+        | nl | sort -k 2 | uniq -f 1 | sort -nk 1 \
+        | sed 's-\s*[0-9]*\s*--; /qute:\/\//d'
+      ;;
+    *)
+      cat
+      ;;
+  esac
+}
+
+menu() {
+  [[ -s "$CONFIG_HOME"/dmenu/font ]] && read -r font < "$CONFIG_HOME"/dmenu/font
+  [[ -n $font ]] && opts+=(-fn "$font")
+  opts+=(-p qutebrowser)
+  dmenu -l 10 "${opts[@]}"
 }
 
 main "$@"
