@@ -2478,14 +2478,7 @@ config.bind(",qr", "spawn --userscript qr")
 
 ### Bindings for qmenu
 config.bind(",O", "spawn --userscript qmenu open -t")
-config.bind(",b", "spawn --userscript qmenu open -b")
 config.bind(",o", "spawn --userscript qmenu open")
-
-config.bind(",hO", "spawn --userscript qmenu open -t")
-config.bind(",hb", "spawn --userscript qmenu open -b")
-config.bind(",ho", "spawn --userscript qmenu open")
-config.bind(",hp", "spawn --userscript qmenu open -p")
-config.bind(",hw", "spawn --userscript qmenu open -w")
 
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
