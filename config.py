@@ -2427,6 +2427,8 @@ config.bind("<Ctrl-Shift-C>", "yank selection")
 ### Bindings for mpv
 config.bind(",W", "hint --rapid links spawn --verbose --detach umpv {hint-url}")
 config.bind(",w", "hint links spawn --verbose --detach umpv {hint-url}")
+config.bind("<Alt-Shift-w>", "spawn mpv --volume=0 {url}")
+config.bind("<Alt-w>", "spawn umpv {url}")
 
 config.bind(
     ",qW", "hint --rapid links spawn --verbose --detach mpv --volume=0 {hint-url}"
