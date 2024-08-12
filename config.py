@@ -2485,6 +2485,9 @@ config.bind(",o", "spawn --userscript qmenu open")
 config.bind(",D", "spawn --userscript qmenu --domain -- open -t")
 config.bind(",d", "spawn --userscript qmenu --domain -- open")
 
+config.bind(",C", "spawn --userscript qmenu --current -- open -t")
+config.bind(",c", "spawn --userscript qmenu --current -- open")
+
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
 # config.bind('0', 'move-to-start-of-line', mode='caret')
