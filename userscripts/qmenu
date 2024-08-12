@@ -20,6 +20,10 @@ main() {
         strategy=domain
         shift
         ;;
+      '-c' | '--current')
+        strategy=current
+        shift
+        ;;
       '-h' | '--help')
         help
         exit
@@ -48,8 +52,9 @@ help() {
 Usage: qmenu [OPTIONS]
 
 Options:
-  -d, --domain  Select domains from history.
-  -h, --help    Show this message and exit.
+  -d, --domain   Select domains from history.
+  -c, --current  Select current domain URLs from history.
+  -h, --help     Show this message and exit.
 EOF
 }
 
@@ -74,6 +79,9 @@ select_() {
       sed 's-.*\(https\|http\|file\)://\([^/]*\).*-\1://\2-' \
         | nl | sort -k 2 | uniq -f 1 | sort -nk 1 \
         | sed 's-\s*[0-9]*\s*--; /qute:\/\//d'
+      ;;
+    'current')
+      grep -F "$(sed 's-\([^/]*\)//\([^/]*\).*-\1//\2-' <<< "$QUTE_URL")"
       ;;
     *)
       cat
