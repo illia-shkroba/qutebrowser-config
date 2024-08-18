@@ -1032,7 +1032,7 @@ c.colors.webpage.darkmode.enabled = True
 ##   - true
 ##   - false
 ##   - ask
-# c.content.notifications.enabled = 'ask'
+c.content.notifications.enabled = False
 
 ## What notification presenter to use for web notifications. Note that
 ## not all implementations support all features of notifications: - The
@@ -1624,7 +1624,7 @@ c.editor.command = [
 ## Duration (in milliseconds) to show messages in the statusbar for. Set
 ## to 0 to never clear messages.
 ## Type: Int
-# c.messages.timeout = 3000
+c.messages.timeout = 1000
 
 ## How to open links in an existing instance if a new one is launched.
 ## This happens when e.g. opening a link from a terminal. See
@@ -1797,7 +1797,7 @@ c.editor.command = [
 ## Enable smooth scrolling for web pages. Note smooth scrolling does not
 ## work with the `:scroll-px` command.
 ## Type: Bool
-# c.scrolling.smooth = False
+c.scrolling.smooth = True
 
 ## When to find text on a page case-insensitively.
 ## Type: IgnoreCase
@@ -2055,7 +2055,7 @@ c.editor.command = [
 ##   - prev: Select the tab which came before the closed one (left in horizontal, above in vertical).
 ##   - next: Select the tab which came after the closed one (right in horizontal, below in vertical).
 ##   - last-used: Select the previously selected tab.
-# c.tabs.select_on_remove = 'next'
+c.tabs.select_on_remove = "last-used"
 
 ## When to show the tab bar.
 ## Type: String
@@ -2064,7 +2064,7 @@ c.editor.command = [
 ##   - never: Always hide the tab bar.
 ##   - multiple: Hide the tab bar if only one tab is open.
 ##   - switching: Show the tab bar when switching tabs.
-# c.tabs.show = 'always'
+c.tabs.show = "multiple"
 
 ## Duration (in milliseconds) to show the tab bar before hiding it when
 ## tabs.show is set to 'switching'.
@@ -2160,7 +2160,7 @@ c.url.default_page = "https://www.google.com"
 ## Open base URL of the searchengine if a searchengine shortcut is
 ## invoked without parameters.
 ## Type: Bool
-# c.url.open_base_url = False
+c.url.open_base_url = True
 
 ## Search engines which can be used via the address bar.  Maps a search
 ## engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -2191,7 +2191,7 @@ c.url.searchengines = {
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
-# c.url.start_pages = ['https://start.duckduckgo.com']
+c.url.start_pages = ["https://www.google.com"]
 
 ## URL parameters to strip with `:yank url`.
 ## Type: List of String
