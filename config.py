@@ -2183,8 +2183,12 @@ c.url.open_base_url = True
 ## Type: Dict
 c.url.searchengines = {
     "DEFAULT": "https://www.google.com/search?q={}",
+    "ag": "https://allegro.pl/listing?string={}",
     "aw": "https://wiki.archlinux.org/?search={}",
-    "ddg": "https://duckduckgo.com/?q={}",
+    "dg": "https://duckduckgo.com/?q={}",
+    "g": "https://www.google.com/search?q={}",
+    "ho": "https://hoogle.haskell.org/?hoogle={}",
+    "m": "https://www.google.com/maps/search/{}",
     "w": "https://en.wikipedia.org/wiki/{}",
     "yt": "https://www.youtube.com/results?search_query={}",
 }
