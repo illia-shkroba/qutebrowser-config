@@ -2489,13 +2489,13 @@ config.bind(",l", "set colors.webpage.darkmode.enabled false")
 config.bind(",qr", "spawn --userscript qr")
 
 ### Bindings for qmenu
-config.bind(",O", "spawn --userscript qmenu open -t")
+config.bind(",O", "spawn --userscript qmenu open -rt")
 config.bind(",o", "spawn --userscript qmenu open")
 
-config.bind(",D", "spawn --userscript qmenu --domain -- open -t")
+config.bind(",D", "spawn --userscript qmenu --domain -- open -rt")
 config.bind(",d", "spawn --userscript qmenu --domain -- open")
 
-config.bind(",C", "spawn --userscript qmenu --current -- open -t")
+config.bind(",C", "spawn --userscript qmenu --current -- open -rt")
 config.bind(",c", "spawn --userscript qmenu --current -- open")
 
 ## Bindings for caret mode
