@@ -38,13 +38,14 @@ main() {
     esac
   done
 
-  url=$(history | select_ "$strategy" | menu)
-  url=$(sed 's-.*\(https\|http\|file\)://-\1://-' <<< "$url")
+  urls=$(history | select_ "$strategy" | menu)
+  urls=$(sed 's-.*\(https\|http\|file\)://-\1://-' <<< "$urls")
 
   # If no selection is made, exit (escape pressed, e.g.)
-  [[ -z $url ]] && exit 0
+  [[ -z $urls ]] && exit 0
 
-  echo -n "$@ $url" >> "$QUTE_FIFO"
+  prefix="$@"
+  sed "s/^/$prefix /" <<< "$urls" >> "$QUTE_FIFO"
 }
 
 help() {
