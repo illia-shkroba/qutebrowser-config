@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+
+# Borrowed from https://github.com/LaurenceWarne/qute-code-hint
+
+import html
+import os
+import re
+import xml.etree.ElementTree as ET
+
+
+def main() -> None:
+    element = os.environ.get("QUTE_SELECTED_HTML")
+    assert (
+        element is not None
+    ), "QUTE_SELECTED_HTML environment variable cannot be empty."
+
+    text = clean(parse(element))
+    safe_text = secure(text)
+
+    try:
+        import pyperclip
+
+        pyperclip.copy(text)
+        short_text = f"{safe_text[:30]}..." if len(safe_text) > 30 else safe_text
+        tell_qute(f"message-info 'copied to clipboard: {short_text}'")
+    except ImportError:
+        tell_qute(f"yank inline '{safe_text}'")
+
+
+def parse(element: str) -> str:
+    # https://stackoverflow.com/a/35591507/15245191
+    magic = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" [
+                <!ENTITY nbsp ' '>
+                ]>"""
+    root = ET.fromstring(magic + element)
+    text = ET.tostring(root, encoding="unicode", method="text")
+    return html.unescape(text)
+
+
+def clean(x: str) -> str:
+    return re.sub(re.compile(r"^(\$ )", re.MULTILINE), "", x)
+
+
+def secure(x: str) -> str:
+    # Qute's yank command won't copy across multiple lines so we compromise
+    # by placing lines on a single line separated by the "\t"
+    return re.sub("(\n)+", "\t", x.replace("'", '"'))
+
+
+def tell_qute(command: str) -> None:
+    fifo = os.environ.get("QUTE_FIFO")
+    assert fifo is not None, "QUTE_FIFO environment variable cannot be empty."
+    with open(fifo, "w") as h:
+        h.write(command)
+
+
+if __name__ == "__main__":
+    main()
