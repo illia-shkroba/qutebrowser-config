@@ -1488,6 +1488,13 @@ c.editor.command = [
 ## Type: Dict
 # c.hints.selectors = {'all': ['a', 'area', 'textarea', 'select', 'input:not([type="hidden"])', 'button', 'frame', 'iframe', 'img', 'link', 'summary', '[contenteditable]:not([contenteditable="false"])', '[onclick]', '[onmousedown]', '[role="link"]', '[role="option"]', '[role="button"]', '[role="tab"]', '[role="checkbox"]', '[role="menuitem"]', '[role="menuitemcheckbox"]', '[role="menuitemradio"]', '[role="treeitem"]', '[aria-haspopup]', '[ng-click]', '[ngClick]', '[data-ng-click]', '[x-ng-click]', '[tabindex]:not([tabindex="-1"])'], 'links': ['a[href]', 'area[href]', 'link[href]', '[role="link"][href]'], 'images': ['img'], 'media': ['audio', 'img', 'video'], 'url': ['[src]', '[href]'], 'inputs': ['input[type="text"]', 'input[type="date"]', 'input[type="datetime-local"]', 'input[type="email"]', 'input[type="month"]', 'input[type="number"]', 'input[type="password"]', 'input[type="search"]', 'input[type="tel"]', 'input[type="time"]', 'input[type="url"]', 'input[type="week"]', 'input:not([type])', '[contenteditable]:not([contenteditable="false"])', 'textarea']}
 
+## CSS selector for code.
+c.hints.selectors["code"] = [
+    # Selects all code tags whose direct parent is not a pre tag
+    ":not(pre) > code",
+    "pre",
+]
+
 ## Make characters in hint strings uppercase.
 ## Type: Bool
 # c.hints.uppercase = False
@@ -2501,6 +2508,9 @@ config.bind(",d", "spawn --userscript qmenu --domain -- open")
 
 config.bind(",C", "spawn --userscript qmenu --current -- open -rt")
 config.bind(",c", "spawn --userscript qmenu --current -- open")
+
+### Bindings for qcode
+config.bind(",#", "hint code userscript qcode")
 
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
