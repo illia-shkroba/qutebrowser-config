@@ -2470,6 +2470,11 @@ config.bind(
     "hint links spawn --verbose --output-messages "
     + f'yt-dlp -P "{music_downloads_dir}" -f bestaudio {{hint-url}}',
 )
+config.bind(
+    ",,m",
+    "spawn --verbose --output-messages "
+    + f'yt-dlp -P "{music_downloads_dir}" -f bestaudio {{url}}',
+)
 
 ### Bindings for video downloading
 video_downloads_dir = Path.home() / "downloads" / "video"
@@ -2484,6 +2489,11 @@ config.bind(
     ",v",
     "hint links spawn --verbose --output-messages "
     + f'yt-dlp -P "{video_downloads_dir}" {{hint-url}}',
+)
+config.bind(
+    ",,v",
+    "spawn --verbose --output-messages "
+    + f'yt-dlp -P "{video_downloads_dir}" {{url}}',
 )
 
 ### Bindings for pass
