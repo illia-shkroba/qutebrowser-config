@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import catppuccin
+
 ## Post installation notes
 ## 1. qutebrowser (as well as other browsers) __do not support__ *pipewire*.
 ##    Instead *alsa* is being used. Make sure that a package that enables
@@ -26,6 +28,9 @@ from pathlib import Path
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
 config.load_autoconfig(False)
+
+## Use catppuccin's "mocha" theme: <https://github.com/catppuccin/qutebrowser.git>
+catppuccin.setup(c, "mocha", True)
 
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
@@ -2492,8 +2497,7 @@ config.bind(
 )
 config.bind(
     ",,v",
-    "spawn --verbose --output-messages "
-    + f'yt-dlp -P "{video_downloads_dir}" {{url}}',
+    "spawn --verbose --output-messages " + f'yt-dlp -P "{video_downloads_dir}" {{url}}',
 )
 
 ### Bindings for pass
