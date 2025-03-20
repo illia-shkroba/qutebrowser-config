@@ -1247,6 +1247,8 @@ c.downloads.location.directory = str(downloads_dir)
 ## Type: ShellCommand
 c.editor.command = [
     "st",
+    "-t",
+    "qutebrowser-command",
     "--",
     "nvim",
     "-c",
@@ -2515,28 +2517,30 @@ config.bind(",qr", "spawn --userscript qr")
 
 ### Bindings for qmenu
 config.bind(
-    ",O", "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu' open -rt"
+    ",O",
+    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu -t qmenu' open -rt",
 )
 config.bind(
-    ",o", "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu' open"
+    ",o",
+    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu -t qmenu' open",
 )
 
 config.bind(
     ",D",
-    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu' --domain -- open -rt",
+    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu -t qmenu' --domain -- open -rt",
 )
 config.bind(
     ",d",
-    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu' --domain -- open",
+    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu -t qmenu' --domain -- open",
 )
 
 config.bind(
     ",C",
-    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu' --current -- open -rt",
+    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu -t qmenu' --current -- open -rt",
 )
 config.bind(
     ",c",
-    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu' --current -- open",
+    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu -t qmenu' --current -- open",
 )
 
 ### Bindings for qcode
