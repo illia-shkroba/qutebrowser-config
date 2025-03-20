@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-# Lookup for link in quickmarks/bookmarks/history with dmenu
-
-#:bind o spawn --userscript qmenu open
-#:bind O spawn --userscript qmenu open -t
+# Lookup for link in quickmarks/bookmarks/history with `fzfmenu` or `dmenu`
 
 readonly CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 
@@ -24,6 +21,16 @@ main() {
         strategy=current
         shift
         ;;
+      '-t' | '--fzf-terminal')
+        shift
+        if [ "$#" -gt 0 ]; then
+          fzf_terminal="$1"
+          shift
+        else
+          echo "--fzf-terminal requires an argument." >&2
+          exit 1
+        fi
+        ;;
       '-h' | '--help')
         help
         exit
@@ -38,6 +45,10 @@ main() {
     esac
   done
 
+  if [ -n "$fzf_terminal" ]; then
+    export FZF_TERMINAL="$fzf_terminal"
+  fi
+
   urls=$(history | select_ "$strategy" | menu)
   urls=$(sed 's-.*\(https\|http\|file\)://-\1://-' <<< "$urls")
 
@@ -50,12 +61,13 @@ main() {
 
 help() {
   cat >&2 << 'EOF'
-Usage: qmenu [OPTIONS]
+Usage: qmenu [OPTIONS] [--] [QUTE_COMMAND_PREFIX]
 
 Options:
-  -d, --domain   Select domains from history.
-  -c, --current  Select current domain URLs from history.
-  -h, --help     Show this message and exit.
+  -d, --domain        Select domains from history.
+  -c, --current       Select current domain URLs from history.
+  -t, --fzf-terminal  Set FZF_TERMINAL.
+  -h, --help          Show this message and exit.
 EOF
 }
 
@@ -91,10 +103,17 @@ select_() {
 }
 
 menu() {
-  [[ -s "$CONFIG_HOME"/dmenu/font ]] && read -r font < "$CONFIG_HOME"/dmenu/font
-  [[ -n $font ]] && opts+=(-fn "$font")
-  opts+=(-p qutebrowser)
-  dmenu -l 10 "${opts[@]}"
+  if type fzfmenu > /dev/null; then
+    fzfmenu --prompt 'qutebrowser> '
+  elif type dmenu > /dev/null; then
+    [[ -s "$CONFIG_HOME"/dmenu/font ]] && read -r font < "$CONFIG_HOME"/dmenu/font
+    [[ -n $font ]] && opts+=(-fn "$font")
+    opts+=(-p qutebrowser)
+    dmenu -l 10 "${opts[@]}"
+  else
+    echo "$(basename "$0") expects either fzfmenu or dmenu to be available." >&2
+    exit 1
+  fi
 }
 
 main "$@"
