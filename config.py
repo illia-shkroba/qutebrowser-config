@@ -1734,7 +1734,7 @@ c.messages.timeout = 1000
 ## Additional environment variables to set. Setting an environment
 ## variable to null/None will unset it.
 ## Type: Dict
-# c.qt.environ = {}
+c.qt.environ = {"FZF_TERMINAL": "st -c qute-pass-fzfmenu -t qute-pass-fzfmenu"}
 
 ## Force a Qt platform to use. This sets the `QT_QPA_PLATFORM`
 ## environment variable and is useful to force using the XCB plugin when
@@ -2503,9 +2503,11 @@ config.bind(
 )
 
 ### Bindings for pass
-config.bind(",p", "spawn --userscript qute-pass --dmenu-invocation='dmenu'")
+config.bind(",p", "spawn --userscript qute-pass --dmenu-invocation='fzfmenu'")
 config.bind(
-    "<Ctrl-P>", "spawn --userscript qute-pass --dmenu-invocation='dmenu'", mode="insert"
+    "<Ctrl-P>",
+    "spawn --userscript qute-pass --dmenu-invocation='fzfmenu'",
+    mode="insert",
 )
 
 ### Bindings for colors
