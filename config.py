@@ -2622,8 +2622,6 @@ config.bind(",#", "hint code userscript qcode")
 
 ## Bindings for insert mode
 # config.bind('<Ctrl-E>', 'edit-text', mode='insert')
-config.bind("<Ctrl-E>", "nop", mode="insert")
-config.bind("<Ctrl-F>", "edit-text", mode="insert")
 # config.bind('<Escape>', 'mode-leave', mode='insert')
 # config.bind('<Shift-Escape>', 'fake-key <Escape>', mode='insert')
 # config.bind('<Shift-Ins>', 'insert-text -- {primary}', mode='insert')
