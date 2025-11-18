@@ -1247,6 +1247,8 @@ c.downloads.location.directory = str(downloads_dir)
 ## Type: ShellCommand
 c.editor.command = [
     "st",
+    "-c",
+    "qutebrowser-command",
     "-t",
     "qutebrowser-command",
     "--",
@@ -2603,7 +2605,7 @@ config.bind("<Ctrl-D>", "rl-delete-char", mode="command")
 # config.bind('<Ctrl-Shift-W>', 'rl-filename-rubout', mode='command')
 # config.bind('<Ctrl-Tab>', 'completion-item-focus next-category', mode='command')
 # config.bind('<Ctrl-U>', 'rl-unix-line-discard', mode='command')
-config.bind("<Ctrl-V>", "edit-command", mode="command")
+config.bind("<Ctrl-V>", "cmd-edit", mode="command")
 # config.bind('<Ctrl-W>', 'rl-rubout " "', mode='command')
 # config.bind('<Ctrl-Y>', 'rl-yank', mode='command')
 # config.bind('<Down>', 'completion-item-focus --history next', mode='command')
