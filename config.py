@@ -1125,6 +1125,7 @@ c.content.notifications.enabled = False
 ##   - false
 ##   - ask
 # c.content.register_protocol_handler = 'ask'
+config.set("content.register_protocol_handler", True, "https://calendar.google.com/*")
 config.set("content.register_protocol_handler", True, "https://mail.google.com/*")
 
 ## Enable quirks (such as faked user agent headers) needed to get
