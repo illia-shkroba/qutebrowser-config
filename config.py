@@ -1248,15 +1248,13 @@ c.downloads.location.directory = str(downloads_dir)
 ## Type: ShellCommand
 c.editor.command = [
     "st",
-    "-c",
-    "qutebrowser-command",
-    "-t",
-    "qutebrowser-command",
+    "--class=qutebrowser-command",
+    "--title=qutebrowser-command",
     "--",
     "nvim",
     "-c",
     "normal {line}G{column0}l",
-    "--",
+    "-e",
     "{file}",
 ]
 
@@ -1737,7 +1735,7 @@ c.messages.timeout = 1000
 ## Additional environment variables to set. Setting an environment
 ## variable to null/None will unset it.
 ## Type: Dict
-c.qt.environ = {"FZF_TERMINAL": "st -c qute-pass-fzfmenu -t qute-pass-fzfmenu"}
+c.qt.environ = {"FZF_TERMINAL": "st --class=qute-pass-fzfmenu --title=qute-pass-fzfmenu"}
 
 ## Force a Qt platform to use. This sets the `QT_QPA_PLATFORM`
 ## environment variable and is useful to force using the XCB plugin when
@@ -2523,29 +2521,29 @@ config.bind(",qr", "spawn --userscript qr")
 ### Bindings for qmenu
 config.bind(
     ",O",
-    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu -t qmenu' open -rt",
+    "spawn --userscript qmenu --fzf-terminal 'st --class=qutebrowser-fzfmenu --title=qmenu' open -rt",
 )
 config.bind(
     ",o",
-    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu -t qmenu' open",
+    "spawn --userscript qmenu --fzf-terminal 'st --class=qutebrowser-fzfmenu --title=qmenu' open",
 )
 
 config.bind(
     ",D",
-    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu -t qmenu' --domain -- open -rt",
+    "spawn --userscript qmenu --fzf-terminal 'st --class=qutebrowser-fzfmenu --title=qmenu' --domain -- open -rt",
 )
 config.bind(
     ",d",
-    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu -t qmenu' --domain -- open",
+    "spawn --userscript qmenu --fzf-terminal 'st --class=qutebrowser-fzfmenu --title=qmenu' --domain -- open",
 )
 
 config.bind(
     ",C",
-    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu -t qmenu' --current -- open -rt",
+    "spawn --userscript qmenu --fzf-terminal 'st --class=qutebrowser-fzfmenu --title=qmenu' --current -- open -rt",
 )
 config.bind(
     ",c",
-    "spawn --userscript qmenu --fzf-terminal 'st -c qutebrowser-fzfmenu -t qmenu' --current -- open",
+    "spawn --userscript qmenu --fzf-terminal 'st --class=qutebrowser-fzfmenu --title=qmenu' --current -- open",
 )
 
 ### Bindings for qcode
