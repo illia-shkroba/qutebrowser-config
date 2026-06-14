@@ -725,7 +725,7 @@ c.colors.webpage.darkmode.enabled = True
 
 ## Enable the ad/host blocker
 ## Type: Bool
-# c.content.blocking.enabled = True
+c.content.blocking.enabled = False
 
 ## Block subdomains of blocked hosts. Note: If only a single subdomain is
 ## blocked but should be allowed, consider using
@@ -1250,11 +1250,11 @@ c.editor.command = [
     "ghostty",
     "--class=local.qutebrowser-command",
     "--title=qutebrowser-command",
-    "--",
+    "-e",
     "nvim",
     "-c",
     "normal {line}G{column0}l",
-    "-e",
+    "--",
     "{file}",
 ]
 
