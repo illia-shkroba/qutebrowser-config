@@ -551,31 +551,13 @@ c.bindings.key_mappings = {
 ## Type: Bool
 c.colors.webpage.darkmode.enabled = True
 
-## Render all colors as grayscale. This only has an effect when
-## `colors.webpage.darkmode.algorithm` is set to `lightness-hsl` or
-## `brightness-rgb`.
-## Type: Bool
-# c.colors.webpage.darkmode.grayscale.all = False
-
-## Desaturation factor for images in dark mode. If set to 0, images are
-## left as-is. If set to 1, images are completely grayscale. Values
-## between 0 and 1 desaturate the colors accordingly.
-## Type: Float
-# c.colors.webpage.darkmode.grayscale.images = 0.0
-
-## Increase text contrast by drawing an outline of the uninverted color.
-## Type: Bool
-# c.colors.webpage.darkmode.increase_text_contrast = False
-
-## Which images to apply dark mode to. With QtWebEngine 5.15.0, this
-## setting can cause frequent renderer process crashes due to a
-## https://codereview.qt-project.org/c/qt/qtwebengine-
-## chromium/+/304211[bug in Qt].
+## Which images to apply dark mode to.
 ## Type: String
 ## Valid values:
 ##   - always: Apply dark mode filter to all images.
 ##   - never: Never apply dark mode filter to any images.
-##   - smart: Apply dark mode based on image content. Not available with Qt 5.15.0.
+##   - smart: Apply dark mode based on image content.
+##   - smart-simple: Simpler algorithm on Qt 6.6+ (color-count/transparency).
 # c.colors.webpage.darkmode.policy.images = 'smart'
 
 ## Which pages to apply dark mode to. The underlying Chromium setting has
@@ -600,7 +582,7 @@ c.colors.webpage.darkmode.enabled = True
 ## left as in the original, non-dark-mode page. Set to 256 to always
 ## invert text color or to 0 to never invert text color.
 ## Type: Int
-# c.colors.webpage.darkmode.threshold.text = 256
+# c.colors.webpage.darkmode.threshold.foreground = 256
 
 ## Value to use for `prefers-color-scheme:` for websites. The "light"
 ## value is only available with QtWebEngine 5.15.2+. On older versions,
