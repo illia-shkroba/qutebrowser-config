@@ -1,6 +1,9 @@
+import os
 from pathlib import Path
 
 import catppuccin
+
+terminal = os.environ.get("TERMINAL", "st") or "st"
 
 ## Post installation notes
 ## 1. qutebrowser (as well as other browsers) __do not support__ *pipewire*.
@@ -1229,7 +1232,7 @@ c.downloads.location.directory = str(downloads_dir)
 ## Same as `{column}`, but starting from index 0.
 ## Type: ShellCommand
 c.editor.command = [
-    "ghostty",
+    terminal,
     "--class=local.qutebrowser-command",
     "--title=qutebrowser-command",
     "-e",
@@ -1717,7 +1720,9 @@ c.messages.timeout = 1000
 ## Additional environment variables to set. Setting an environment
 ## variable to null/None will unset it.
 ## Type: Dict
-c.qt.environ = {"FZF_TERMINAL": "ghostty --class=local.qute-pass-fzfmenu --title=qute-pass-fzfmenu"}
+c.qt.environ = {
+    "FZF_TERMINAL": f"{terminal} --class=local.qute-pass-fzfmenu --title=qute-pass-fzfmenu"
+}
 
 ## Force a Qt platform to use. This sets the `QT_QPA_PLATFORM`
 ## environment variable and is useful to force using the XCB plugin when
@@ -2501,31 +2506,33 @@ config.bind(",l", "set colors.webpage.darkmode.enabled false")
 config.bind(",qr", "spawn --userscript qr")
 
 ### Bindings for qmenu
+qmenu_terminal = f"{terminal} --class=local.qutebrowser-fzfmenu --title=qmenu"
+
 config.bind(
     ",O",
-    "spawn --userscript qmenu --fzf-terminal 'ghostty --class=local.qutebrowser-fzfmenu --title=qmenu' open -rt",
+    f"spawn --userscript qmenu --fzf-terminal '{qmenu_terminal}' open -rt",
 )
 config.bind(
     ",o",
-    "spawn --userscript qmenu --fzf-terminal 'ghostty --class=local.qutebrowser-fzfmenu --title=qmenu' open",
+    f"spawn --userscript qmenu --fzf-terminal '{qmenu_terminal}' open",
 )
 
 config.bind(
     ",D",
-    "spawn --userscript qmenu --fzf-terminal 'ghostty --class=local.qutebrowser-fzfmenu --title=qmenu' --domain -- open -rt",
+    f"spawn --userscript qmenu --fzf-terminal '{qmenu_terminal}' --domain -- open -rt",
 )
 config.bind(
     ",d",
-    "spawn --userscript qmenu --fzf-terminal 'ghostty --class=local.qutebrowser-fzfmenu --title=qmenu' --domain -- open",
+    f"spawn --userscript qmenu --fzf-terminal '{qmenu_terminal}' --domain -- open",
 )
 
 config.bind(
     ",C",
-    "spawn --userscript qmenu --fzf-terminal 'ghostty --class=local.qutebrowser-fzfmenu --title=qmenu' --current -- open -rt",
+    f"spawn --userscript qmenu --fzf-terminal '{qmenu_terminal}' --current -- open -rt",
 )
 config.bind(
     ",c",
-    "spawn --userscript qmenu --fzf-terminal 'ghostty --class=local.qutebrowser-fzfmenu --title=qmenu' --current -- open",
+    f"spawn --userscript qmenu --fzf-terminal '{qmenu_terminal}' --current -- open",
 )
 
 ### Bindings for qcode
